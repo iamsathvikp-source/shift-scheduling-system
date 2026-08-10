@@ -1,6 +1,9 @@
 package com.scheduling.shiftschedulingsystem.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
@@ -15,11 +18,9 @@ public class Shift {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String location;
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee assignedEmployee;
 
-    public Shift() {}
+    public Shift() {
+    }
 
     public Shift(LocalDateTime startTime, LocalDateTime endTime, String location) {
         setStartTime(startTime);
@@ -59,13 +60,5 @@ public class Shift {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public Employee getAssignedEmployee() {
-        return assignedEmployee;
-    }
-
-    public void setAssignedEmployee(Employee assignedEmployee) {
-        this.assignedEmployee = assignedEmployee;
     }
 }
