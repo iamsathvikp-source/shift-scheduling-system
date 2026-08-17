@@ -1,9 +1,9 @@
-package com.scheduling.shiftschedulingsystem.service;
+package com.scheduling.shiftschedulingsystem.shifts.service;
 
-import com.scheduling.shiftschedulingsystem.dto.ShiftRequest;
-import com.scheduling.shiftschedulingsystem.dto.ShiftResponse;
-import com.scheduling.shiftschedulingsystem.model.Shift;
-import com.scheduling.shiftschedulingsystem.repository.ShiftRepository;
+import com.scheduling.shiftschedulingsystem.shifts.dto.ShiftRequest;
+import com.scheduling.shiftschedulingsystem.shifts.dto.ShiftResponse;
+import com.scheduling.shiftschedulingsystem.shifts.repository.ShiftRepository;
+import com.scheduling.shiftschedulingsystem.shifts.task.CreateShiftTask;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +19,8 @@ public class ShiftService {
     }
 
     public ShiftResponse createShift(ShiftRequest request) {
-        Shift shift = new Shift(request.getStartTime(), request.getEndTime(), request.getLocation());
-        Shift saved = shiftRepository.save(shift);
-        return ShiftResponse.from(saved);
+        CreateShiftTask task = new CreateShiftTask(request, shiftRepository);
+        return task.execute();
     }
 
     public List<ShiftResponse> getAllShifts() {

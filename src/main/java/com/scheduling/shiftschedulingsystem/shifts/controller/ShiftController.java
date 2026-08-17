@@ -1,8 +1,8 @@
-package com.scheduling.shiftschedulingsystem.controller;
+package com.scheduling.shiftschedulingsystem.shifts.controller;
 
-import com.scheduling.shiftschedulingsystem.dto.ShiftRequest;
-import com.scheduling.shiftschedulingsystem.dto.ShiftResponse;
-import com.scheduling.shiftschedulingsystem.service.ShiftService;
+import com.scheduling.shiftschedulingsystem.shifts.dto.ShiftRequest;
+import com.scheduling.shiftschedulingsystem.shifts.dto.ShiftResponse;
+import com.scheduling.shiftschedulingsystem.shifts.service.ShiftService;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/shifts")
+@RequestMapping("/v1/shifts")
 public class ShiftController {
 
     private final ShiftService shiftService;

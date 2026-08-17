@@ -1,4 +1,5 @@
-package com.scheduling.shiftschedulingsystem.model;
+package com.scheduling.shiftschedulingsystem.shifts.model;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "shifts")
@@ -60,5 +62,18 @@ public class Shift {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        else if (obj == null || getClass() != obj.getClass()) return false;
+        Shift shift = (Shift) obj;
+        return Objects.equals(id, shift.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
