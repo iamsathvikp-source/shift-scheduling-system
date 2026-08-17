@@ -1,5 +1,6 @@
-package com.scheduling.shiftschedulingsystem.controller;
+package com.scheduling.shiftschedulingsystem.shifts.controller;
 
+import com.scheduling.shiftschedulingsystem.shifts.exception.ShiftException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,6 +19,13 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.put(error.getField(), error.getDefaultMessage()));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    @ExceptionHandler(ShiftException.class)
+    public ResponseEntity<Map<String, String>> handleShiftException(ShiftException ex) {
+        Map<String, String> body = new LinkedHashMap<>();
+        body.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

@@ -1,6 +1,6 @@
-package com.scheduling.shiftschedulingsystem.dto;
+package com.scheduling.shiftschedulingsystem.shifts.dto;
 
-import com.scheduling.shiftschedulingsystem.model.Shift;
+import com.scheduling.shiftschedulingsystem.shifts.model.Shift;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.scheduling.shiftschedulingsystem.dto;
+package com.scheduling.shiftschedulingsystem.shifts.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

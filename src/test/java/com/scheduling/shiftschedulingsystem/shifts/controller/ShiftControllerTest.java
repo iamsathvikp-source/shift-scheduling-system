@@ -1,9 +1,10 @@
-package com.scheduling.shiftschedulingsystem.controller;
+package com.scheduling.shiftschedulingsystem.shifts.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.scheduling.shiftschedulingsystem.dto.ShiftRequest;
-import com.scheduling.shiftschedulingsystem.dto.ShiftResponse;
-import com.scheduling.shiftschedulingsystem.service.ShiftService;
+import com.scheduling.shiftschedulingsystem.shifts.controller.ShiftController;
+import com.scheduling.shiftschedulingsystem.shifts.dto.ShiftRequest;
+import com.scheduling.shiftschedulingsystem.shifts.dto.ShiftResponse;
+import com.scheduling.shiftschedulingsystem.shifts.service.ShiftService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -41,7 +42,7 @@ class ShiftControllerTest {
 
         when(shiftService.createShift(any(ShiftRequest.class))).thenReturn(response);
 
-        mockMvc.perform(post("/api/shifts")
+        mockMvc.perform(post("/v1/shifts")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isCreated())
@@ -55,7 +56,7 @@ class ShiftControllerTest {
         LocalDateTime end = LocalDateTime.of(2026, 8, 10, 17, 0);
         ShiftRequest request = new ShiftRequest(start, end, "");
 
-        mockMvc.perform(post("/api/shifts")
+        mockMvc.perform(post("/v1/shifts")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
@@ -69,7 +70,7 @@ class ShiftControllerTest {
 
         when(shiftService.getAllShifts()).thenReturn(Collections.singletonList(response));
 
-        mockMvc.perform(get("/api/shifts"))
+        mockMvc.perform(get("/v1/shifts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1));
     }
